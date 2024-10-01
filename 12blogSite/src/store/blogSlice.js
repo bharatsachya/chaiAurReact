@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-     status: false,
+     id: 1,
      blogs: []
 }
 
@@ -10,14 +10,12 @@ export const blogSlice = createSlice({
     initialState,
     reducers:{
         addBlog: (state,action)=>{
-            state.status = true;
             state.blogs.push(action.payload)
         },
         removeBlog: (state,action)=>{
-              state.status[action.payload.id] = false;
+            state.blogs = state.blogs.filter(blog=>blog.id !== action.payload)  
         },
     }
 })
 
 export const {addBlog,removeBlog} = blogSlice.actions
-export default blogSlice.reducer;

@@ -1,6 +1,6 @@
-import { Client, Databases,ID } from "appwrite";
+import { Client, Databases,ID,Storage} from "appwrite";
 import Conf from "../conf/conf.js";
-
+import { Query } from "appwrite";
 class BLogService{
     client = new Client()
     databases;
@@ -40,7 +40,6 @@ class BLogService{
        }
        catch(e){
               console.log(e)
-
        }
     }
 
@@ -101,9 +100,9 @@ class BLogService{
         }
     }
 
-    async getFile(fileID){
+    getFilePreview(fileID){
         try{
-            return await this.bucket.getFile(
+            return this.bucket.getFilePreview(
                 Conf.AppwriteBucketID,
                 fileID
             )
@@ -114,6 +113,6 @@ class BLogService{
     }
 }
 
-const bLogService = new BLogService();
+const blogService = new BLogService();
 
-export default bLogService;
+export default blogService;
